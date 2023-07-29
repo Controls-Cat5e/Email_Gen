@@ -38,7 +38,7 @@ if st.button("Generate Email"):
             prompt = f"""
             You are an expert at writing emails
             You will write the meeting using this tone: {tone}
-            The content of your email is:
+            The content of your email is, you will perform grammar refinements, fix typos and follow the tone above:
             {content}
             """
             st.write(PaLMgen(prompt, creativity, outputSize))
