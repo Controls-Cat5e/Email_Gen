@@ -1,0 +1,2 @@
+-q google-generativeai
+streamlit
