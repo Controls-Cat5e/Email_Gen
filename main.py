@@ -24,7 +24,7 @@ def PaLMgen(prompt, temp, outputSize):
 
 st.title("Hello , Welcome to Email Generator")
 content = st.text_area("Please type the content of your email here", height=100)
-tone = st.selectbox("Please select the tone of your email", ("Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral","professional email short", "other"))
+tone = st.selectbox("Please select the tone of your email", ("Professional email short","Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral", "other"))
 
 if tone == "other":
     tone = st.text_input("Please type the tone of your email here")
