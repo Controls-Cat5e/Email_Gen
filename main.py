@@ -1,6 +1,8 @@
 import streamlit as st
 import pprint
 import google.generativeai as palm
+st.set_page_config(layout="wide")
+st.set_page_config(page_title="Prototype-Email")
 palm.configure(api_key=st.secrets["api_key"])
 models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
 model = models[0].name
