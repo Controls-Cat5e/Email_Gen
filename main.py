@@ -1,7 +1,7 @@
 import streamlit as st
 import pprint
 import google.generativeai as palm
-palm.configure(api_key='AIzaSyAz-zB8gld3zLUDKOLKYE06aYwpXYgdnLY')
+palm.configure(api_key=st.secrets["api_key")
 models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
 model = models[0].name
 
