@@ -29,9 +29,9 @@ tone = st.selectbox("Please select the tone of your email", ("Professional email
 if tone == "other":
     tone = st.text_input("Please type the tone of your email here")
     
-creativity = st.slider("Please select the creativity of your email", 0, 100, 70)/100
-outputSize = st.slider("Please select the maximum length of your email", 0, 5000, 250)
-suggestedSize = st.slider("Please select the suggested length of your email (0 will be regarded as you have no suggestion and the LLM will autopick)", 0, 5000, 0)
+creativity = st.slider("Please select the creativity of your email", 0, 100, 33)/100
+outputSize = st.slider("Please select the maximum length of your email", 0, 1024, 250)
+suggestedSize = st.slider("Please select the suggested length of your email (0 will be regarded as you have no suggestion and the LLM will autopick)", 0, 1024, 0)
 
 if st.button("Generate Email"):
     with st.spinner('Your email is being generated...'):
