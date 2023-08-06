@@ -23,7 +23,7 @@ def PaLMgen(prompt, temp, outputSize):
 
 
 st.title("Hello , Welcome to Text Generator!")
-option = st.radio("Please select the type of your text", ("Email", "Message", "Essay", "Other"))
+option = st.radio("Please select the type of your text", ("Email", "Message"))
 content = st.text_area("Please type the content of your email here", height=100)
 tone = st.selectbox("Please select the tone of your email", ("Professional email short","Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral", "other"))
 
