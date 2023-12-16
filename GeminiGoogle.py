@@ -22,7 +22,15 @@ def geminiGen(prompt, temp, outputSize):
         max_output_tokens=outputSize,
         temperature=temp)
     )
-    return completion.text
+    if outputFont == "TextDefault":
+        st.markdown(completion.text)
+    elif outputFont == "Raw":
+        st.code(completion.text)
+        
+    elif outputFont == "Custom":
+        for line in completion.text.splitlines():
+            st.markdown(f'<p style="font-family:Courier New;font-size: 16px;">{line}</p>', unsafe_allow_html=True)
+
 
 
 st.title("Hello , Welcome to Email Generator V1.0! Now Powered by Gemini.")
@@ -36,6 +44,7 @@ if tone == "other":
 creativity = st.slider("Please select the creativity of your email", 0, 100, 33)/100
 outputSize = st.slider("Please select the maximum length of your email", 0, 2048, 1024)
 suggestedSize = st.slider("Please select the suggested length of your email (0 will be regarded as you have no suggestion and the LLM will autopick)", 0, 1024, 0)
+outputFont = st.radio("Please select the font of your email (note: custom might be unsafe)",("TextDefault","Raw","Custom") )
 
 if st.button("Generate Email"):
     if option == "Email":
@@ -46,9 +55,10 @@ if st.button("Generate Email"):
                 You will write the email using this tone: {tone}
                 The content of your email is:
                 {content}
-                you will perform grammar refinements, fix typos and follow the tone above
+                you will perform grammar refinements, fix typos and follow the tone above, return only the email with no other accompanying text
                 """
-                st.markdown(geminiGen(prompt, creativity, outputSize))
+                geminiGen(prompt, creativity, outputSize)
+
                 
             else:
                 prompt = f"""
@@ -57,13 +67,13 @@ if st.button("Generate Email"):
                 The suggested length of the email is: {suggestedSize} words
                 The content of your email is:
                 {content}
-                you will perform grammar refinements, fix typos and follow the tone above:
+                you will perform grammar refinements, fix typos and follow the tone above, return only the email with no other accompanying text
                 """
-                st.markdown(geminiGen(prompt, creativity, outputSize))
+                geminiGen(prompt, creativity, outputSize)
                 
             
         st.success('Your email has been generated! 	:star2:')
-        st.balloons()
+        st.snow()
 
     elif option == "Message":
         with st.spinner('Your message is being generated...'):
@@ -73,9 +83,9 @@ if st.button("Generate Email"):
                 You will write the message using this tone: {tone}
                 The content of your message is:
                 {content}
-                you will perform grammar refinements, fix typos and follow the tone above
+                you will perform grammar refinements, fix typos and follow the tone above, return only the message with no other accompanying text
                 """
-                st.markdown(geminiGen(prompt, creativity, outputSize))
+                geminiGen(prompt, creativity, outputSize)
                 
             else:
                 prompt = f"""
@@ -84,9 +94,9 @@ if st.button("Generate Email"):
                 The suggested length of the message is: {suggestedSize} words
                 The content of your message is:
                 {content}
-                you will perform grammar refinements, fix typos and follow the tone above
+                you will perform grammar refinements, fix typos and follow the tone above, return only the message with no other accompanying text
                 """
-                st.markdown(geminiGen(prompt, creativity, outputSize))
+                geminiGen(prompt, creativity, outputSize)
                 
             
         st.success('Your message has been generated! 	:star2:')
