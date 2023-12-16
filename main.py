@@ -2,6 +2,9 @@ import streamlit as st
 import pprint
 import google.generativeai as gemini
 st.set_page_config(page_title="Email Gen-V1.0", page_icon=":email:",initial_sidebar_state="expanded")
+st.sidebar.title("Email Gen-V1.0")
+st.sidebar.success("Please select version above ")
+
 gemini.configure(api_key=st.secrets["api_key"])
 models = [m for m in gemini.list_models() if 'generateText' in m.supported_generation_methods]
 model = gemini.GenerativeModel('gemini-pro')
