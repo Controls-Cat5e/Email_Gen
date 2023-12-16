@@ -14,7 +14,7 @@ temp = 0.7
 outputSize = 1000
 
 def geminiGen(prompt, temp, outputSize):
-    completion = gemini.generate_content(
+    completion = model.generate_content(
         model=model,
         prompt=prompt,
         temperature=temp,
