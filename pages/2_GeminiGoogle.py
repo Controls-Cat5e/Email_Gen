@@ -1,16 +1,20 @@
 import streamlit as st
-import google.generativeai as palm
-st.set_page_config(page_title="Prototype-TextGen", initial_sidebar_state="expanded")
-palm.configure(api_key=st.secrets["api_key"])
-models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-model = models[0].name
+import pprint
+import google.generativeai as gemini
+st.set_page_config(page_title="Email Gen-V1.0", page_icon=":email:",initial_sidebar_state="expanded")
+st.sidebar.title("Email Gen-V1.0")
 st.sidebar.success("Please select version above ")
+
+gemini.configure(api_key=st.secrets["api_key"])
+models = [m for m in gemini.list_models() if 'generateText' in m.supported_generation_methods]
+model = gemini.GenerativeModel('gemini-pro')
+
 
 temp = 0.7
 outputSize = 1000
 
-def PaLMgen(prompt, temp, outputSize):
-    completion = palm.generate_text(
+def geminiGen(prompt, temp, outputSize):
+    completion = gemini.generate_content(
         model=model,
         prompt=prompt,
         temperature=temp,
@@ -20,8 +24,7 @@ def PaLMgen(prompt, temp, outputSize):
     return completion.result
 
 
-
-st.title("Hello , Welcome to Text Generator!")
+st.title("Hello , Welcome to Email Generator V1.0! Now Powered by Gemini.")
 option = st.radio("Please select the type of your text", ("Email", "Message"))
 content = st.text_area("Please type the content of your email here", height=100)
 tone = st.selectbox("Please select the tone of your email", ("Professional email short","Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral", "other"))
@@ -30,7 +33,7 @@ if tone == "other":
     tone = st.text_input("Please type the tone of your email here")
     
 creativity = st.slider("Please select the creativity of your email", 0, 100, 33)/100
-outputSize = st.slider("Please select the maximum length of your email", 0, 512, 1024)
+outputSize = st.slider("Please select the maximum length of your email", 0, 2048, 1024)
 suggestedSize = st.slider("Please select the suggested length of your email (0 will be regarded as you have no suggestion and the LLM will autopick)", 0, 1024, 0)
 
 if st.button("Generate Email"):
@@ -44,7 +47,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(PaLMgen(prompt, creativity, outputSize))
+                st.write(geminiGen(prompt, creativity, outputSize))
                 
             else:
                 prompt = f"""
@@ -55,7 +58,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above:
                 """
-                st.write(PaLMgen(prompt, creativity, outputSize))
+                st.write(geminiGen(prompt, creativity, outputSize))
                 
             
         st.success('Your email has been generated! 	:star2:')
@@ -71,7 +74,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(PaLMgen(prompt, creativity, outputSize))
+                st.write(geminiGen(prompt, creativity, outputSize))
                 
             else:
                 prompt = f"""
@@ -82,8 +85,8 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(PaLMgen(prompt, creativity, outputSize))
+                st.write(geminiGen(prompt, creativity, outputSize))
                 
             
         st.success('Your message has been generated! 	:star2:')
-        st.snow()
+        st.balloons()

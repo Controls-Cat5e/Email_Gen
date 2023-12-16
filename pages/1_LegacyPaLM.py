@@ -1,10 +1,10 @@
 import streamlit as st
 import google.generativeai as palm
-st.set_page_config(page_title="Prototype-TextGen", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Prototype-TextGen")
 palm.configure(api_key=st.secrets["api_key"])
 models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
 model = models[0].name
-st.sidebar.success("Please select version above ")
+
 
 temp = 0.7
 outputSize = 1000
@@ -30,7 +30,7 @@ if tone == "other":
     tone = st.text_input("Please type the tone of your email here")
     
 creativity = st.slider("Please select the creativity of your email", 0, 100, 33)/100
-outputSize = st.slider("Please select the maximum length of your email", 0, 512, 1024)
+outputSize = st.slider("Please select the maximum length of your email", 0, 1024, 250)
 suggestedSize = st.slider("Please select the suggested length of your email (0 will be regarded as you have no suggestion and the LLM will autopick)", 0, 1024, 0)
 
 if st.button("Generate Email"):
@@ -86,4 +86,4 @@ if st.button("Generate Email"):
                 
             
         st.success('Your message has been generated! 	:star2:')
-        st.snow()
+        st.balloons()
