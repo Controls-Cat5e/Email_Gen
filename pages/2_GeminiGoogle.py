@@ -15,13 +15,14 @@ outputSize = 1000
 
 def geminiGen(prompt, temp, outputSize):
     completion = model.generate_content(
-        model=model,
-        prompt=prompt,
-        temperature=temp,
-        # The maximum length of the response
+        prompt,
+        generation_config=gemini.types.GenerationConfig(
+        # Only one candidate for now.
+        candidate_count=1,
         max_output_tokens=outputSize,
+        temperature=temp)
     )
-    return completion.result
+    return completion.text
 
 
 st.title("Hello , Welcome to Email Generator V1.0! Now Powered by Gemini.")
@@ -47,7 +48,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(geminiGen(prompt, creativity, outputSize))
+                st.markdown(geminiGen(prompt, creativity, outputSize))
                 
             else:
                 prompt = f"""
@@ -58,7 +59,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above:
                 """
-                st.write(geminiGen(prompt, creativity, outputSize))
+                st.markdown(geminiGen(prompt, creativity, outputSize))
                 
             
         st.success('Your email has been generated! 	:star2:')
@@ -74,7 +75,7 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(geminiGen(prompt, creativity, outputSize))
+                st.markdown(geminiGen(prompt, creativity, outputSize))
                 
             else:
                 prompt = f"""
@@ -85,8 +86,8 @@ if st.button("Generate Email"):
                 {content}
                 you will perform grammar refinements, fix typos and follow the tone above
                 """
-                st.write(geminiGen(prompt, creativity, outputSize))
+                st.markdown(geminiGen(prompt, creativity, outputSize))
                 
             
         st.success('Your message has been generated! 	:star2:')
-        st.balloons()
+        st.snow()
