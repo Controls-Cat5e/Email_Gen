@@ -28,25 +28,16 @@ if tone == "other":
 if st.button("Generate Email"):
     if option == "Email":
         with st.spinner('Your email is being generated...'):
-            if suggestedSize == 0:
-                prompt = f"""
-                You are an expert at writing emails
-                You will write the email using this tone: {tone}
-                The content of your email is:
-                {content}
-                you will perform grammar refinements, fix typos and follow the tone above
-                """
-                st.write(metaGen(prompt))
+            prompt = f"""
+            You are an expert at writing emails
+            You will write the email using this tone: {tone}
+            The content of your email is:
+            {content}
+            you will perform grammar refinements, fix typos and follow the tone above
+            """
+            st.write(metaGen(prompt))
                 
-            else:
-                prompt = f"""
-                You are an expert at writing emails
-                You will write the email using this tone: {tone}
-                The content of your email is:
-                {content}
-                you will perform grammar refinements, fix typos and follow the tone above:
-                """
-                st.write(metaGen(prompt))
+
                 
             
         st.success('Your email has been generated! 	:star2:')
@@ -54,25 +45,15 @@ if st.button("Generate Email"):
 
     elif option == "Message":
         with st.spinner('Your message is being generated...'):
-            if suggestedSize == 0:
-                prompt = f"""
-                You are an expert at writing SMS/Messages
-                You will write the message using this tone: {tone}
-                The content of your message is:
-                {content}
-                you will perform grammar refinements, fix typos and follow the tone above
-                """
-                st.write(metaGen(prompt))
+            prompt = f"""
+            You are an expert at writing SMS/Messages
+            You will write the message using this tone: {tone}
+            The content of your message is:
+            {content}
+            you will perform grammar refinements, fix typos and follow the tone above
+            """
+            st.write(metaGen(prompt))
                 
-            else:
-                prompt = f"""
-                You are an expert at writing SMS and Messages
-                You will write the message using this tone: {tone}
-                The content of your message is:
-                {content}
-                you will perform grammar refinements, fix typos and follow the tone above
-                """
-                st.write(metaGen(prompt))
                 
             
         st.success('Your message has been generated! 	:star2:')
