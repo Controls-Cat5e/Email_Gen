@@ -46,4 +46,4 @@ if prompt :=text:
         st_callback = StreamlitCallbackHandler(st.container())
         formatted_prompt = prompttemplate.format_messages(input=prompt, history=history.messages)
         response = st.write_stream(llm.stream(formatted_prompt))
-        history.add_ai_message(response)
+        history.add_ai_message(response)     
