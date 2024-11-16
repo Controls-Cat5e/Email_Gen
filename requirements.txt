@@ -1,5 +1,7 @@
 google-generativeai
 streamlit
 pillow
-meta-ai-api
+langchain-groq
+langchain 
+langchain_community
 
