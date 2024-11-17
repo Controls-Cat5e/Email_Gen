@@ -14,7 +14,7 @@ prompttemplate = ChatPromptTemplate.from_messages(
         (
             "system",
             """
-            You are an expert at writing emails, please assist the user in writing the best emails possible and ask clarifying questions if needed before assuming information. 
+           You are an expert in crafting clear, professional, and effective emails. Help the user write the best possible emails by asking clarifying questions to understand their intent and context fully. Focus on clarity, tone, and purpose to ensure each email aligns with the user's goals and expectations.
             """,
         ),
         ("placeholder", "{history}"),
