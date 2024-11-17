@@ -8,7 +8,7 @@ from langchain_community.callbacks.streamlit import (
     StreamlitCallbackHandler,
 )
 
-st.title("Email Gen-Llama 90B V1.0")
+st.title("Email Gemini 1.5")
 prompttemplate = ChatPromptTemplate.from_messages(
     [
         (
@@ -30,11 +30,11 @@ llm = ChatGoogleGenerativeAI(
     api_key=st.secrets["api_key"]
 )
 
-history = StreamlitChatMessageHistory(key="mk-llama-90b")
+history = StreamlitChatMessageHistory(key="mk-gemini")
 text = st.chat_input(placeholder="Type your message here...")
 if len(history.messages) == 0:
     history.add_ai_message("Welcome to the Email Gen-Llama 90B V1.0! How can I help you today?")
-    
+
 for msg in history.messages:
     st.chat_message(msg.type).write(msg.content)
     
