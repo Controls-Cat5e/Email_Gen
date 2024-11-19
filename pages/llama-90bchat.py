@@ -8,7 +8,7 @@ from langchain_community.callbacks.streamlit import (
     StreamlitCallbackHandler,
 )
 
-st.title("Email Gen-Llama 90B V1.0")
+st.title("Email Gen-Llama 70B V1.0")
 prompttemplate = ChatPromptTemplate.from_messages(
     [
         (
@@ -24,7 +24,7 @@ prompttemplate = ChatPromptTemplate.from_messages(
 )
 
 llm = ChatGroq(
-    model="llama-3.2-90b-text-preview",
+    model="llama-3.1-70b-versatile",
     temperature=0.3,
     max_tokens=8192,
     api_key=st.secrets["groq_key"]
