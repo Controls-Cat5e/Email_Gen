@@ -24,7 +24,7 @@ prompttemplate = ChatPromptTemplate.from_messages(
 )
 
 llm = ChatGroq(
-    model="llama-3.1-70b-versatile",
+    model="llama-3.3-70b-versatile",
     temperature=0.3,
     max_tokens=8000,
     api_key=st.secrets["groq_key"]
