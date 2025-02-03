@@ -36,7 +36,7 @@ def geminiGen(prompt, temp, outputSize):
 st.title("Hello , Welcome to Email Generator V1.0! Now Powered by Gemini.")
 option = st.radio("Please select the type of your text", ("Email", "Message"))
 content = st.text_area("Please type the content of your email here", height=100)
-tone = st.selectbox("Please select the tone of your email", ("Professional email short","Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral", "other"))
+tone = st.selectbox("Please select the tone of your email", ("Professional email short","Formal", "Informal", "Casual", "Business", "Informative", "question", "neutral", "other", "Refine my email to make it more professional"))
 
 if tone == "other":
     tone = st.text_input("Please type the tone of your email here")
