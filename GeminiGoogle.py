@@ -7,7 +7,7 @@ st.sidebar.success("Please select version above ")
 
 gemini.configure(api_key=st.secrets["api_key"])
 models = [m for m in gemini.list_models() if 'generateText' in m.supported_generation_methods]
-model = gemini.GenerativeModel('gemini-exp-1114')
+model = gemini.GenerativeModel('gemini-exp-1206')
 
 
 temp = 0.7
