@@ -34,7 +34,7 @@ prompttemplate = ChatPromptTemplate.from_messages(
             - Clear call-to-action
             - Professional signature recommendations
             - Concise paragraphing
-            - Bullet point usage when appropriate
+            - Bullet point usage when appropriate but not excessive
             - Proper salutations and closings
 
             When refining existing emails:
